@@ -23,6 +23,8 @@ Route::prefix('api/v1')->group(function () {
 
     Route::post('/user-register-password', 'UserController@registerPassword');
 
+    Route::get('/logout', 'PassportController@logout');
+
     Route::middleware('auth:api')->group(function () {
 
 

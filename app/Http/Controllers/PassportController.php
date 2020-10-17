@@ -81,4 +81,13 @@ class PassportController extends Controller
     {
         return response()->json(['user' => auth()->user()], 200);
     }
+
+    public function logout(Request $request) {
+        $user = User::query()->where('doc_id', $request['doc_id'])->first();
+        \DB::table('oauth_access_tokens')
+        ->where('user_id', $user->id)
+        ->update([
+            'revoked' => true
+        ]);
+    }
 }
